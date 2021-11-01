@@ -1,0 +1,137 @@
+.dropzone {
+  border: solid 2px #cccccc;
+  border-radius: 10px;
+  border-style: dashed;
+  background-color: #ffffff;
+  transition-duration: 0.35s;
+}
+
+.dragover {
+  border-color: grey;
+  background-color: #f3f3f3;
+  transition-duration: 0.35s;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: +10001; /* Sit on top */
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  border-radius: 10px;
+  background-color: #fefefe;
+  margin: 2% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.alert-danger {
+  background-color: rgb(255, 245, 245);
+  border-radius: 10px;
+  border: solid 1px rgb(116, 0, 0);
+  color: rgb(116, 0, 0);
+}
+
+.card {
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border-left: solid 4px #ff6363;
+  /* border-color: #fce8e6; */
+}
+
+.success-card {
+  background: #f7fff9;
+  border: solid 1px #119e24;
+  border-left: solid 4px #119e24;
+}
+
+.text-success {
+  color: #008b13;
+}
+
+.danger-card {
+  background: #fff6f6;
+  border: solid 1px #d93025;
+  border-left: solid 4px #d93025;
+}
+
+.p-3 {
+  padding: 15px;
+}
+
+.p-2 {
+  padding: 5px;
+}
+.radius-10 {
+  border-radius: 10px;
+}
+
+#left-side {
+  width: 20%;
+}
+
+#right-side {
+  width: 80%;
+}
+
+.text-size{
+  font-size: 2vw;
+}
+
+
+.badge-primary {
+  border: solid 1px grey;
+  background-color: rgb(255, 255, 255);
+  border-radius: 100px;
+  padding: 3px 10px;
+  /* background-color: #ffffff; */
+}
+
+@media screen and (max-width: 480px) {
+  .left-side {
+    width: 100%;
+  }
+  .right-side {
+    width: 100%;
+  }
+
+  .modal-content{
+  	width: 100%;
+   }
+
+  .text-size{
+    font-size: 4vw;
+  }
+
+}
+
+/* color: #d93025; */

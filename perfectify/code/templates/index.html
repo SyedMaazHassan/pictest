@@ -1,0 +1,301 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+   <head>
+      <base href="https://fizma-tech.com/perfectify/">
+      <!-- <base href="http://fizma.pythonanywhere.com/"> -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="" />
+      <meta name="keywords" content="" />
+      <link rel = "icon" href = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Eo_circle_pink_letter-p.svg/512px-Eo_circle_pink_letter-p.svg.png" type = "image/x-icon">
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://preview.colorlib.com/theme/easy/css,_bootstrap.min.css+css,_owl.carousel.min.css+css,_owl.theme.default.min.css+css,_jquery.fancybox.min.css+fonts,_icomoon,_style.css+fonts,_flaticon,_font,_flaticon.css+css,_aos.css+css,_style.css.pagespeed.cc.3mBjifzUU0.css" />
+      <title>Perfectify - check your image's credibility</title>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   </head>
+   <body>
+      <div class="site-mobile-menu site-navbar-target">
+         <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+               <span class="icofont-close js-menu-toggle"></span>
+            </div>
+         </div>
+         <div class="site-mobile-menu-body"></div>
+      </div>
+      <nav class="site-nav">
+         <div class="container">
+            <div class="site-navigation">
+               
+               <a href="{% url 'index' %}" class="logo"><span style="color: #ff6363;">P</span>erfectify</a>
+               <ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu">
+                  
+               </ul>
+                <ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right menu-absolute">
+              
+                  <li class="cta-button">
+		       <div class="alert alert-white bg-white d-flex align-items-center" style="border-radius:100px" role="alert">
+                		<i class="material-icons mr-2 text-secondary">info</i>
+				API will l be availlable soon!
+            		</div>
+                     <!-- <button type="button" class="btn btn-secondary text-white">Login</button>
+                     <button type="button" class="btn btn-primary">Register</button> -->
+
+
+                  </li>
+               </ul>
+               <a href="#" class="burger light ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
+               <span></span>
+               </a>
+            </div>
+         </div>
+      </nav>
+      <div class="hero">
+         <div class="container">
+            <div class="row align-items-center justify-content-between">
+               <div class="col-lg-5 intro">
+                  <h1 class="text-white font-weight-bold mb-3" data-aos="fade-up" data-aos-delay="0">Check your image before uploading </h1>
+                  <h3 class="text-white font-weight-bold mt-4 mb-4" data-aos="fade-up" data-aos-delay="0">to any online forum.</h3> 
+                  
+                  <p class="text-white mb-4" data-aos="fade-up" data-aos-delay="100">
+                     Keep your face straight while capturing a picture. Background color should be blue. Picture should not include Face & sun glasses.
+                  </p>
+                  <!-- <form action="#" class="sign-up-form d-flex" data-aos="fade-up" data-aos-delay="200"> -->
+                     <!-- <input type="text" class="form-control" placeholder="Enter email address"> -->
+                     <!-- <input type="submit" class="btn btn-primary" value="Sign up"> -->
+                     <!-- <button type="button" class="btn btn-primary">Upload your image</button>
+
+                     <h1>OR</h1> -->
+
+                     <form action="#" class="sign-up-form d-flex" style="border-radius: 100px;" data-aos="fade-up" data-aos-delay="200">
+                        <input type="text" class="form-control bg-white" placeholder="To check your image instantly" readonly>
+                        <input type="button" class="btn btn-primary" onclick="upload_file('target_file')" value="Upload here">
+    
+                     </form>
+                  <!-- </form> -->  
+               </div>
+            </div>
+            <div class="hero_img" data-aos="fade-up" data-aos-delay="300">
+               
+               <!-- <img src="https://preview.colorlib.com/theme/easy/images/xhero_img.png.pagespeed.ic.DEbE9QfN2U.webp" alt="Image" class="img-fluid" data-pagespeed-url-hash="161723062" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"> -->
+               <img src="{% static 'img/collage.jpg' %}" style="width: 430px; border-radius: 20px; border: solid 10px #202040;" alt="Image" class="img-fluid">
+            </div>
+         </div>
+         <div class="slant" style="background-image: url('https://preview.colorlib.com/theme/easy/images/slant.svg');"></div>
+      </div>
+
+      <br>
+
+      <!-- Trigger/Open The Modal -->
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close" onclick="close()">&times;</span>
+                <p><b>Preview of your image</b></p>
+
+                <img id="showing_div" class="my-3" style="border-radius: 10px;" src="" alt="">
+
+                <div class="alert alert-danger" id="image_error" role="alert">
+                    Only images (jpg, jpeg, png) are allowed
+                </div>
+
+                <div class="text-right d-flex justify-content-center mt-3" id="submit_button">
+                    <button type="button" onclick="submit_form()" class="btn btn-primary" style="margin-top: 15px;">Get results now</button>
+
+                </div>
+            </div>
+
+        </div>
+
+
+      <div class="container bg-info" id="my-container">
+            {% if result %}
+                <div class="row mb-4 bg-white radius-10 p-2" style="margin: 10px; padding: 20px 20px;">
+                    <div class="col-sm-12 col-12 text-center">
+
+                        <h3 style="margin-bottom: 20px; margin-top: 20px; font-weight: 530;">{{ head.heading | safe }}</h3> 
+                        <h5 style="margin-bottom: 60px;">{{ head.tagline | safe }}</h5> 
+
+                    </div>
+
+
+                    <div class="col-sm-1 col-1 col-lg-1 col-xl-1 col">
+
+                    </div>
+
+                    <div class="col-sm-3 col-lg-3 col-xl-3 pb-3 bg-info d-flex align-items-center justify-content-center">
+                        <img src="perfectify/media/{{ image }}" class="border" style="width: 100%; height: 320px; border-radius: 10px;" id="" alt="">                    
+                    </div>
+                    <div class="col-sm-1 col-lg-1 col-xl-1 col-1">
+
+                    </div>
+
+                    <div class="col-sm-8 col-lg-8 col-xl-8 col-8 bg-primary d-flex align-items-center">
+                        <div style="width: 100%;">
+                            {% for status in all_status %}
+                                <span class="badge badge-primary" style="margin: 100px 10px 0px 10px; position: relative;">{{ status.title }}</span>
+                                <div class="card {{ status.class }}-card d-flex align-items-center" style="margin-top: -13px;">
+
+                                    <div style="width: 95%; padding-right: 15px; margin-top: 8px;">
+                                        {{ status.message | safe }}
+                                    </div>
+                                    <div style="width: 5%;" class="d-flex align-items-center">
+                                        <span class="material-icons text-{{ status.class }}">
+                                            {% if status.is_success %}
+                                                check_circle_outline                                        
+                                            {% else %}
+                                                highlight_off
+                                            {% endif %}
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-12 col-12 text-center">
+
+
+                        
+                        <h3 style="margin-top: 60px; font-weight: 530;">{{ foot.heading | safe }}</h3> 
+                        <h5 style="margin-top: 20px;">{{ foot.tagline }}</h5> 
+
+                        <div class="mt-3" style="margin: 40px auto 20px auto;">
+                            <img src="{% static 'img/google-play.png' %}" style="width: 200px;margin-right: 5px;" alt="">
+                            <img src="{% static 'img/app-store.png' %}" style="width: 200px;margin-left: 5px;" alt="">
+
+                        </div>
+
+                    </div>
+                </div>
+            {% endif %}
+        
+            <form method="POST" id="my-form" action="{% url 'result' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="text-center" style="margin: 20px auto;">
+                    <div class="my-1 mb-5 p-5 text-center d-flex align-items-center justify-content-center dropzone" ondrop="now_drop(event)" id="dropzone" ondragover="allowdrop(event)" ondragleave="previous_state(event)" >
+                        <h3>Even you can drag <b class="text-primary" style="color: #ff6363;">&</b> drop your image here</h3> 
+                        <input type="file" id="target_file" name="targetfile" onchange="readURL(this, 'showing_div')" style="height: 0px; overflow:hidden; width: 0px;">
+
+                    </div>
+                </div>
+            </form>
+          
+      </div>
+    
+
+      <div class="features-section">
+         <div class="container">
+            <div class="row justify-content-center text-center">
+               <div class="section-title col-lg-7" data-aos="fade-up" data-aos-delay="0">
+                  <strong class="subtitle d-block">Awesome Features</strong>
+                  <h2 class="heading font-weight-bold">Cool Features</h2>
+                  <p class="description text-grey">In this version, our software is capable of detecting following items</p>
+               </div>
+            </div>
+            <div class="row gutter-v1">
+               <div class="text-center text-md-left col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+                  <div class="feature">
+                     <div class="img-wrap">
+                        <img src="https://preview.colorlib.com/theme/easy/images/flaticon/svg/002-coins.svg" alt="Image" class="img-fluid" data-pagespeed-url-hash="1764426238" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                     </div>
+                     <h3>Face Mask</h3>
+                     <p>If the image, that is uploaded on this application has facemask. It will be detected by the system. Online forums doesn't allow pictures having facemasks.</p>
+                  </div>
+               </div>
+               <div class="text-center text-md-left col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                  <div class="feature">
+                     <div class="img-wrap">
+                        <img src="https://preview.colorlib.com/theme/easy/images/flaticon/svg/005-brochure.svg" alt="Image" class="img-fluid" data-pagespeed-url-hash="669805702" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                     </div>
+                     <h3>Sunglasses</h3>
+                     <p>Imagine a student just filled the online form for school admission, and uploaded picture with sun glasses! No worries, our system is there to give relavent feedback.</p>
+                  </div>
+               </div>
+               <div class="text-center text-md-left col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                  <div class="feature">
+                     <div class="img-wrap">
+                        <img src="https://preview.colorlib.com/theme/easy/images/flaticon/svg/004-notebook.svg" alt="Image" class="img-fluid" data-pagespeed-url-hash="873324087" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                     </div>
+                     <h3>Image Background</h3>
+                     <p>This application will allow pictures having blue Background only to avoid any casual pictures on professional and business platforms. Users can upload pictures and get feedback!</p>
+                  </div>
+               </div>
+             
+            </div>
+         </div>
+      </div>
+
+      <div class="features-lg">
+         <div class="container">
+            <div class="row feature align-items-center justify-content-between">
+               <div class="col-lg-7 order-lg-2 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
+                  <img src="{% static 'img/collage.jpg' %}" alt="Image" class="img-fluid" data-pagespeed-url-hash="2250293024" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+               </div>
+               <div class="col-lg-4 section-title" data-aos="fade-up" data-aos-delay="100">
+                  <strong class="subtitle d-block">Why Perfectify?</strong>
+                  <h2 class="font-weight-bold mb-4 heading">Why to choose us!</h2>
+                  <p class="mb-4"> we’ve implemented the idea of automating the Image Upload process which requires several standards (or rules) defined by the company or organization. Employee recruitment is the part of every organization or company and thus comes the process of uploading your picture for Identity. This project is the application of Computer Vision in the domain of Artificial Intelligence. This software would surely be very beneficial for organizations where this process is done manually.</p>
+                  <p><a href="#" class="btn btn-primary">Get Started</a></p>
+               </div>
+            </div>
+         </div>
+      </div>
+
+     
+      <div class="features-lg">
+         <div class="container">
+            <div class="row feature align-items-center justify-content-between">
+               <div class="col-lg-7 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
+                  <img src="{% static 'img/api.png' %}" alt="Image" class="img-fluid">
+               </div>
+               <div class="col-lg-4 section-title" data-aos="fade-up" data-aos-delay="100">
+                  <strong class="subtitle d-block">Life Changing App</strong>
+                  <h2 class="font-weight-bold mb-4">Use our API directly in your application</h2>
+                  <p class="mb-4">To validate the pictures uploaded by your employees, customers or students. Use the api and show the messages directly to them!</p>
+                  <p><a href="#" class="btn btn-primary">Coming soon...</a></p>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="bg-white p-3 text-center d-flex align-items-center justify-content-center text-lg text-size">
+         Developed with &nbsp; <span class="text-danger">&#9829;</span>&nbsp; by&nbsp;<b>Perfectians</b>
+      </div>
+    
+  
+      <div id="overlayer"></div>
+      <div class="loader">
+         <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+         </div>
+      </div>
+      <script src="https://preview.colorlib.com/theme/easy/js/jquery-3.4.1.min.js"></script>
+      <script src="https://preview.colorlib.com/theme/easy/js/owl.carousel.min.js+aos.js+jquery.animateNumber.min.js+jquery.waypoints.min.js.pagespeed.jc.RH15G7UVeO.js"></script>
+      <script src="https://preview.colorlib.com/theme/easy/js/jquery.fancybox.min.js+aos.js+custom.js.pagespeed.jc.GGtpGK0uAZ.js"></script>
+
+      <script>eval(mod_pagespeed_hcvvsntLMk);</script>
+      <script>eval(mod_pagespeed_tv1q3dXFXt);</script>
+      
+      <script src="{% static 'js/script.js' %}"></script>
+    </body>
+
+    <script>
+        let result = "{{ result }}";
+        console.log(result);
+        if (result) {
+         $('html, body').animate({
+            scrollTop: $("#my-container").offset().top
+         }, 1000);
+        }
+    </script>
+</html>
